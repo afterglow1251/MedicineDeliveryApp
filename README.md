@@ -13,7 +13,7 @@
     PORT=your_server_port
     ```
 
-    Please specify the port that will be used in the `client` directory in the `vite.config.js` file.
+    Specify the port that will be used in the `client` directory in the `vite.config.js` file.
 
 3. Install dependencies if they have not been installed already:
     ```bash
