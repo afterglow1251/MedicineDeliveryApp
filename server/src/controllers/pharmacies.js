@@ -18,9 +18,8 @@ export const createPharmacyAndAddMedication = async (request, reply) => {
     await newPharmacy.save()
 
     reply.send('Pharmacy and medication added successfully!')
-  } catch (error) {
-    console.error('Error creating pharmacy and adding medication:', error)
-    reply.status(500).send('Internal Server Error')
+  } catch (err) {
+    reply.send('Error creating pharmacy and adding medication:', err)
   }
 }
 
