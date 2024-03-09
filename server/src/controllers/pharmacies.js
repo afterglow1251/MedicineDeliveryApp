@@ -1,21 +1,27 @@
 import Pharmacy  from '../models/Pharmacy.js'
 
-export const postPharmacy = async (request, reply) => {
-  const ph = new Pharmacy({
-    name: request.body.name,
-  })
+export const createPharmacyAndAddMedication = async (request, reply) => {
+  try {
+    const newPharmacy = new Pharmacy({
+      name: request.body.pharmacyName
+    })
 
-  ph.medications.push({
-    name: request.body.dname,
-    price: request.body.dprice,
-    number: request.body.number,
-    img: request.body.img
-  })
+    const medication = {
+      name: request.body.medicationName,
+      price: request.body.medicationPrice,
+      number: request.body.medicationNumber,
+      image: request.body.medicationImage
+    }
 
+    newPharmacy.medications.push(medication)
 
-  await ph.save()
+    await newPharmacy.save()
 
-  reply.send('OK!')
+    reply.send('Pharmacy and medication added successfully!')
+  } catch (error) {
+    console.error('Error creating pharmacy and adding medication:', error)
+    reply.status(500).send('Internal Server Error')
+  }
 }
 
 export const putPharmacy = async (request, reply) => {
