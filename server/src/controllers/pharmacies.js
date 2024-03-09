@@ -1,6 +1,6 @@
 import Pharmacy  from '../models/Pharmacy.js'
 
-export const createPharmacyAndAddMedication = async (request, reply) => {
+export const postPharmacy = async (request, reply) => {
   try {
     const newPharmacy = new Pharmacy({
       name: request.body.pharmacyName
