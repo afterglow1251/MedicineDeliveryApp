@@ -10,7 +10,7 @@ export const createPharmacyAndAddMedication = async (request, reply) => {
       name: request.body.medicationName,
       price: request.body.medicationPrice,
       number: request.body.medicationNumber,
-      img: request.body.medicationImage
+      img: request.body.medicationImg
     }
 
     newPharmacy.medications.push(medication)
