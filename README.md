@@ -13,7 +13,7 @@
     PORT=your_server_port
     ```
 
-    Make sure to replace `your_mongodb_connection_string` with the MongoDB connection string and `your_server_port` with the desired port number.
+    Please specify the port that will be used in the `client` directory in the `vite.config.js` file.
 
 3. Install dependencies if they have not been installed already:
     ```bash
