@@ -106,13 +106,16 @@ watch(currentPharmacy, (newPharmacy) => {
 
 
 const loadPharmacies = async () => {
-  try {
-    pharmacies.value = await getPharmacies()
-    medications.value = currentPharmacy.value.medications.filter(medication => medication.number !== 0)
-    loading.value = false
-  } catch (error) {
-    console.error('Error loading pharmacies:', error)
+  pharmacies.value = await getPharmacies()
+  const currentPh = JSON.parse(localStorage.getItem('currentPharmacy'))
+  if (currentPh) {
+    currentPharmacy.value = pharmacies.value.find(item => item._id === currentPh._id)
+  } else if (pharmacies.value.length) {
+    currentPharmacy.value = pharmacies.value[0]
   }
+  medications.value = currentPharmacy.value.medications.filter(medication => medication.number !== 0)
+
+  loading.value = false
 }
 
 const setCurrentPharmacy = async (pharmacy) => {
