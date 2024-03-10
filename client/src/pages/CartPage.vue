@@ -66,7 +66,8 @@
             <div>{{ medication.name }}</div>
 
             <div class='mt-2 flex flex-row justify-between items-center'>
-              <input type='number' min='1' v-model='medication.choice' :id="'number' + index"
+              <input type='number' min='1'
+                     v-model='medication.choice' :id="'number' + index"
                      class='p-2 w-24 rounded-lg border-gray-300'>
               <div class='text-red-500 text-xl'>{{ medication.price * medication.choice }}$</div>
               <button @click='removeMedicationFromCart(medication)'
@@ -77,7 +78,8 @@
 
           </div>
 
-          <p v-if='invalidNumbers(medication)' class='ml-4 text-red-500'>Exceeds available medication quantity</p>
+          <p v-if='invalidMedicationNumber(medication)' class='ml-4 text-red-500'>Invalid medication number</p>
+          <p v-else-if='invalidNumbers(medication)' class='ml-4 text-red-500'>Exceeds available medication quantity</p>
         </div>
         <div v-else-if='!availableMedications.length && !loading'>
           The cart is empty
@@ -204,6 +206,12 @@ const submitForm = async () => {
     return
   }
 
+  if (availableMedications.value.some(medications => invalidMedicationNumber(medications))) {
+    displayErrorPopup.value = true
+    errorMessage.value = 'Some medications have invalid medication quantity'
+    return
+  }
+
   if (!availableMedications.value.length) {
     displayErrorPopup.value = true
     errorMessage.value = 'The cart is empty'
@@ -288,4 +296,11 @@ const validateAddress = () => {
     customerDataErrors.value.address = ''
   }
 }
+
+const invalidMedicationNumber = (medication) => {
+  const inputValue = medication.choice
+  const regex = /[.,]/
+  return regex.test(inputValue) || inputValue === '' || inputValue === 0
+}
+
 </script>
