@@ -7,6 +7,6 @@ export const getMedication = async (request, reply) => {
     const medication = pharmacy.medications.find(med => med._id.equals(medicationId))
     reply.send(medication)
   } catch (err) {
-    reply.send('Error during getting medication')
+    reply.send('Error during getting medication', err)
   }
 }
