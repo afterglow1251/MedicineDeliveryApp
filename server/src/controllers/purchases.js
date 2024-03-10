@@ -29,10 +29,8 @@ export const makePurchase = async (request, reply) => {
     await purchase.save()
 
     reply.send('Purchase is successful!')
-  } catch
-    (err) {
-    reply.send(err)
+  } catch (err) {
+    reply.send('Error during purchasing', err)
   }
 
 }
-
