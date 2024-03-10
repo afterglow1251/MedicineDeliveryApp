@@ -100,7 +100,7 @@
 
   <div v-if='displaySuccessPopup' class='fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50'>
     <div class='bg-white p-8 rounded-lg text-center'>
-      <p class='text-red-500'>{{ successMessage }}</p>
+      <p class='text-green-500'>{{ successMessage }}</p>
       <button @click='displaySuccessPopup=false; successMessage=""'
               class='mt-4 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 inline-block'>Got it
       </button>
